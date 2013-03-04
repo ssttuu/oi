@@ -9,8 +9,7 @@ from PyQt4.QtGui import *
 class PopUp(QMainWindow):
     def __init__(self, parent=None):
         QMainWindow.__init__(self, parent)  
-        self.create_main_frame()
-        self.show()
+        self.create_main_frame()   
 
     def create_main_frame(self):        
         page = QWidget()  

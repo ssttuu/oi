@@ -1,0 +1,66 @@
+# oi testing
+
+import os
+import sys
+import time
+
+from PyQt4.QtCore import *
+from PyQt4.QtGui import *
+
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+
+    def disable(self):
+        self.HEADER = ''
+        self.OKBLUE = ''
+        self.OKGREEN = ''
+        self.WARNING = ''
+        self.FAIL = ''
+        self.ENDC = ''
+
+
+class OI_GUI(QMainWindow):
+    def __init__(self, message, parent=None):
+        QMainWindow.__init__(self, parent)
+        self.message = message
+        self.create_main_frame()
+        
+    def create_main_frame(self):        
+        page = QWidget()        
+
+        self.edit1 = QTextEdit()
+        self.button = QPushButton(self.message, page)
+
+        vbox1 = QVBoxLayout()
+        vbox1.addWidget(self.edit1)
+        vbox1.addWidget(self.button)
+        page.setLayout(vbox1)
+        self.setCentralWidget(page)
+
+        self.connect(self.button, SIGNAL("clicked()"), self.clicked)
+
+    def clicked(self):
+        print "clicked"
+
+
+print "oi"
+time.sleep(.5)
+print "is"
+time.sleep(.5)
+print "back"
+time.sleep(1)
+print "!"
+time.sleep(.5)
+print bcolors.WARNING +"Enter message text. Type Ctrl-d on new line to send or Ctrl-c to cancel:\n" + bcolors.ENDC
+
+userMessage = raw_input()
+
+#os.environ["DISPLAY"] = "bayridge.nycb.mpc.local:0.0"
+
+g = OI_GUI( userMessage)
+g.show()
